@@ -6,11 +6,11 @@
   "private": true,
   "license": "MIT",
   "scripts": {
-  "build": "npx tsc src/main.ts --outDir dist --experimentalDecorators --emitDecoratorMetadata --module commonjs --target ES2021",
-  "start": "node dist/main",
-  "start:dev": "nest start --watch",
-  "start:prod": "node dist/main"
-},
+    "build": "nest build",
+    "start": "node dist/main",
+    "start:prod": "node dist/main",
+    "start:dev": "nest start --watch"
+  },
   "dependencies": {
     "@nestjs/common": "^11.1.19",
     "@nestjs/core": "^11.1.19",
