@@ -117,54 +117,6 @@ xdg-open index.html    # Linux
 
 ---
 
-## 📁 Project Structure
-
-```
-ecohabit/
-│
-├── backend/                        # NestJS API
-│   ├── src/
-│   │   ├── main.ts                 # App entry point, CORS config
-│   │   ├── app.module.ts           # Root module
-│   │   │
-│   │   ├── database/
-│   │   │   └── in-memory.db.ts     # All seed data + interfaces
-│   │   │
-│   │   ├── products/               # Products module
-│   │   │   ├── products.module.ts
-│   │   │   ├── products.service.ts
-│   │   │   └── products.controller.ts
-│   │   │
-│   │   ├── categories/             # Categories module
-│   │   │   ├── categories.module.ts
-│   │   │   ├── categories.service.ts
-│   │   │   └── categories.controller.ts
-│   │   │
-│   │   ├── cart/                   # Cart module
-│   │   │   ├── cart.module.ts
-│   │   │   ├── cart.service.ts
-│   │   │   └── cart.controller.ts
-│   │   │
-│   │   └── orders/                 # Orders module
-│   │       ├── orders.module.ts
-│   │       ├── orders.service.ts
-│   │       └── orders.controller.ts
-│   │
-│   ├── nest-cli.json
-│   ├── tsconfig.json
-│   └── package.json
-│
-├── frontend/                       # Vanilla HTML/CSS/JS
-│   ├── index.html                  # Main SPA shell
-│   ├── style.css                   # Full design system
-│   └── app.js                      # All frontend logic
-│
-├── .gitignore
-└── README.md
-```
-
----
-
 ## 🔌 API Reference
 
 ### Base URL
@@ -296,35 +248,7 @@ npm run start:prod    # Run compiled production build
 - [ ] PWA support for mobile
 - [ ] Unit and E2E tests (Jest + Supertest)
 
----
-
-## 🤝 Contributing
-
-Contributions are welcome! Here's how:
-
-```bash
-# 1. Fork the repository
-# 2. Create your feature branch
-git checkout -b feature/your-feature-name
-
-# 3. Commit your changes
-git commit -m "✨ Add your feature description"
-
-# 4. Push to your branch
-git push origin feature/your-feature-name
-
-# 5. Open a Pull Request on GitHub
 ```
-
----
-
-## 📄 License
-
-This project is licensed under the **MIT License** — feel free to use it for personal or commercial projects.
-
----
-
-## 👨‍💻 Author
 
 Built with 💚 for a greener planet.
 
