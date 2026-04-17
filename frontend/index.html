@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EcoHabit — Sustainable Home Goods Marketplace</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-inner">
+      <a class="logo" href="#" onclick="showPage('home')">
+        <span class="logo-leaf">🌿</span>
+        <span class="logo-text">EcoHabit</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#" onclick="showPage('home')" class="nav-link active" data-page="home">Home</a></li>
+        <li><a href="#" onclick="showPage('shop')" class="nav-link" data-page="shop">Shop</a></li>
+        <li><a href="#" onclick="showPage('about')" class="nav-link" data-page="about">About</a></li>
+        <li><a href="#" onclick="showPage('orders')" class="nav-link" data-page="orders">My Orders</a></li>
+      </ul>
+      <div class="nav-actions">
+        <button class="search-toggle" onclick="toggleSearch()" aria-label="Search">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        </button>
+        <button class="cart-btn" onclick="showPage('cart')" aria-label="Cart">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          <span class="cart-badge" id="cartBadge">0</span>
+        </button>
+      </div>
+    </div>
+    <div class="search-bar" id="searchBar">
+      <div class="search-inner">
+        <input type="text" id="searchInput" placeholder="Search eco products…" oninput="handleSearch(this.value)" />
+        <button onclick="toggleSearch()">✕</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- PAGES -->
+  <main id="app">
+
+    <!-- HOME PAGE -->
+    <div id="page-home" class="page active">
+
+      <!-- HERO -->
+      <section class="hero">
+        <div class="hero-bg">
+          <div class="hero-blob b1"></div>
+          <div class="hero-blob b2"></div>
+          <div class="hero-blob b3"></div>
+        </div>
+        <div class="hero-content">
+          <span class="hero-tag">🌍 Sustainable Living Starts Here</span>
+          <h1 class="hero-title">Live Green.<br /><em>Shop Smarter.</em></h1>
+          <p class="hero-subtitle">Discover eco-friendly home essentials — from bamboo cleaning supplies to biodegradable kitchenware. Every purchase plants a seed for a better tomorrow.</p>
+          <div class="hero-cta">
+            <button class="btn-primary" onclick="showPage('shop')">Shop Now →</button>
+            <button class="btn-ghost" onclick="scrollToSection('categories')">Explore Categories</button>
+          </div>
+          <div class="hero-stats" id="heroStats">
+            <div class="stat"><span class="stat-num">16+</span><span class="stat-label">Products</span></div>
+            <div class="stat-divider"></div>
+            <div class="stat"><span class="stat-num">4</span><span class="stat-label">Categories</span></div>
+            <div class="stat-divider"></div>
+            <div class="stat"><span class="stat-num">9.2</span><span class="stat-label">Avg Eco Score</span></div>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <div class="hero-card-float">
+            <div class="float-icon">🎋</div>
+            <span>Bamboo Certified</span>
+          </div>
+          <div class="hero-circle">
+            <div class="hero-circle-inner">
+              <span class="hero-big-icon">🌿</span>
+            </div>
+          </div>
+          <div class="hero-card-float card-right">
+            <div class="float-icon">♻️</div>
+            <span>Zero Waste</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- CATEGORIES -->
+      <section class="section" id="categories">
+        <div class="container">
+          <div class="section-header">
+            <h2>Shop by Category</h2>
+            <p>Curated collections for every corner of your home</p>
+          </div>
+          <div class="categories-grid" id="categoriesGrid">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+      </section>
+
+      <!-- FEATURED PRODUCTS -->
+      <section class="section section-tinted">
+        <div class="container">
+          <div class="section-header">
+            <h2>Featured Products</h2>
+            <p>Our most-loved eco essentials, hand-picked for you</p>
+            <a href="#" class="see-all" onclick="showPage('shop')">View All →</a>
+          </div>
+          <div class="products-grid" id="featuredGrid">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+      </section>
+
+      <!-- WHY ECO -->
+      <section class="section why-section">
+        <div class="container">
+          <div class="why-layout">
+            <div class="why-text">
+              <span class="section-tag">Why EcoHabit?</span>
+              <h2>Every Product<br />Makes a Difference</h2>
+              <p>We handpick products that are sustainably sourced, biodegradable, or reusable — so switching to eco-friendly living is effortless.</p>
+              <div class="why-list">
+                <div class="why-item"><span>✅</span> 100% plastic-free packaging</div>
+                <div class="why-item"><span>✅</span> Verified eco certifications</div>
+                <div class="why-item"><span>✅</span> Carbon-neutral delivery</div>
+                <div class="why-item"><span>✅</span> 1 tree planted per order</div>
+              </div>
+              <button class="btn-primary" onclick="showPage('shop')">Start Shopping</button>
+            </div>
+            <div class="why-cards">
+              <div class="why-card wc1">
+                <div class="wc-icon">🎋</div>
+                <h4>Bamboo Products</h4>
+                <p>Grows 30x faster than hardwood. Zero pesticides needed.</p>
+              </div>
+              <div class="why-card wc2">
+                <div class="wc-icon">🌊</div>
+                <h4>Plastic-Free</h4>
+                <p>All our products avoid single-use plastics entirely.</p>
+              </div>
+              <div class="why-card wc3">
+                <div class="wc-icon">🌱</div>
+                <h4>Biodegradable</h4>
+                <p>Returns to the earth naturally with zero microplastics.</p>
+              </div>
+              <div class="why-card wc4">
+                <div class="wc-icon">💚</div>
+                <h4>Non-Toxic</h4>
+                <p>Safe for families, children, pets, and the planet.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- SHOP PAGE -->
+    <div id="page-shop" class="page">
+      <div class="shop-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+          <div class="sidebar-section">
+            <h3>Categories</h3>
+            <ul class="filter-list" id="categoryFilters">
+              <li><label><input type="radio" name="cat" value="all" checked onchange="applyFilters()" /> All Products</label></li>
+              <li><label><input type="radio" name="cat" value="bamboo-cleaning" onchange="applyFilters()" /> 🎋 Bamboo Cleaning</label></li>
+              <li><label><input type="radio" name="cat" value="biodegradable-kitchenware" onchange="applyFilters()" /> 🍃 Kitchenware</label></li>
+              <li><label><input type="radio" name="cat" value="reusable-storage" onchange="applyFilters()" /> ♻️ Reusable Storage</label></li>
+              <li><label><input type="radio" name="cat" value="eco-cleaning-agents" onchange="applyFilters()" /> 🌿 Cleaning Agents</label></li>
+            </ul>
+          </div>
+          <div class="sidebar-section">
+            <h3>Price Range</h3>
+            <div class="price-range">
+              <input type="range" id="maxPriceSlider" min="100" max="2500" value="2500" oninput="updatePriceLabel(this.value); applyFilters()" />
+              <div class="price-labels">
+                <span>₹100</span>
+                <span id="priceLabel">₹2500</span>
+              </div>
+            </div>
+          </div>
+          <div class="sidebar-section">
+            <h3>Sort By</h3>
+            <select id="sortSelect" onchange="applyFilters()" class="sort-select">
+              <option value="">Default</option>
+              <option value="price-asc">Price: Low to High</option>
+              <option value="price-desc">Price: High to Low</option>
+              <option value="rating">Top Rated</option>
+              <option value="eco-score">Highest Eco Score</option>
+            </select>
+          </div>
+          <button class="btn-outline" onclick="resetFilters()">Reset Filters</button>
+        </aside>
+
+        <!-- Products Area -->
+        <div class="products-area">
+          <div class="shop-header">
+            <h2 id="shopTitle">All Products</h2>
+            <span id="productCount" class="product-count">Loading...</span>
+          </div>
+          <div class="products-grid" id="shopGrid">
+            <!-- Populated by JS -->
+          </div>
+          <div id="shopEmpty" class="empty-state" style="display:none">
+            <div class="empty-icon">🔍</div>
+            <h3>No products found</h3>
+            <p>Try adjusting your filters or search terms</p>
+            <button class="btn-primary" onclick="resetFilters()">Clear Filters</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CART PAGE -->
+    <div id="page-cart" class="page">
+      <div class="container">
+        <h2 class="page-title">Your Cart 🛒</h2>
+        <div class="cart-layout">
+          <div class="cart-items" id="cartItems">
+            <!-- Populated by JS -->
+          </div>
+          <div class="cart-summary" id="cartSummary">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+        <div id="cartEmpty" class="empty-state" style="display:none">
+          <div class="empty-icon">🛒</div>
+          <h3>Your cart is empty</h3>
+          <p>Discover our eco-friendly products and make your first sustainable purchase!</p>
+          <button class="btn-primary" onclick="showPage('shop')">Shop Now</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- CHECKOUT PAGE -->
+    <div id="page-checkout" class="page">
+      <div class="container">
+        <h2 class="page-title">Checkout 🌿</h2>
+        <div class="checkout-layout">
+          <div class="checkout-form-wrap">
+            <h3>Delivery Information</h3>
+            <div class="form-grid">
+              <div class="form-group">
+                <label>Full Name *</label>
+                <input type="text" id="co-name" placeholder="Your full name" />
+              </div>
+              <div class="form-group">
+                <label>Email Address *</label>
+                <input type="email" id="co-email" placeholder="you@example.com" />
+              </div>
+              <div class="form-group full">
+                <label>Delivery Address *</label>
+                <input type="text" id="co-address" placeholder="House no, Street, Area" />
+              </div>
+              <div class="form-group">
+                <label>City *</label>
+                <input type="text" id="co-city" placeholder="City" />
+              </div>
+              <div class="form-group">
+                <label>PIN Code *</label>
+                <input type="text" id="co-pincode" placeholder="6-digit PIN" maxlength="6" />
+              </div>
+            </div>
+            <div class="eco-pledge">
+              <span>🌱</span>
+              <p>By placing this order, you're joining our eco-pledge. We'll plant 1 tree on your behalf!</p>
+            </div>
+            <button class="btn-primary btn-large" onclick="placeOrder()">Place Order →</button>
+          </div>
+          <div class="checkout-summary" id="checkoutSummary">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ORDER SUCCESS PAGE -->
+    <div id="page-success" class="page">
+      <div class="container">
+        <div class="success-card" id="successCard">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+    </div>
+
+    <!-- ORDERS PAGE -->
+    <div id="page-orders" class="page">
+      <div class="container">
+        <h2 class="page-title">My Orders 📦</h2>
+        <div id="ordersList"><!-- Populated by JS --></div>
+        <div id="ordersEmpty" class="empty-state" style="display:none">
+          <div class="empty-icon">📦</div>
+          <h3>No orders yet</h3>
+          <p>Your order history will appear here.</p>
+          <button class="btn-primary" onclick="showPage('shop')">Start Shopping</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ABOUT PAGE -->
+    <div id="page-about" class="page">
+      <div class="about-hero">
+        <div class="container">
+          <span class="hero-tag">Our Story</span>
+          <h1>We Believe in a<br /><em>Greener Home</em></h1>
+          <p>EcoHabit was founded with a simple mission: make sustainable living easy, affordable, and beautiful.</p>
+        </div>
+      </div>
+      <div class="container">
+        <div class="about-grid">
+          <div class="about-card">
+            <div class="about-icon">🌍</div>
+            <h3>Our Mission</h3>
+            <p>To make eco-friendly household products accessible to every Indian household, reducing plastic waste by 1 billion units by 2030.</p>
+          </div>
+          <div class="about-card">
+            <div class="about-icon">🤝</div>
+            <h3>Our Partners</h3>
+            <p>We work with certified sustainable farms, fair-trade artisans, and zero-waste manufacturers across India and Southeast Asia.</p>
+          </div>
+          <div class="about-card">
+            <div class="about-icon">🌱</div>
+            <h3>Our Impact</h3>
+            <p>Every order plants a tree. Over 10,000 trees planted, 500,000 plastic items avoided, and 2 million households impacted.</p>
+          </div>
+          <div class="about-card">
+            <div class="about-icon">🏅</div>
+            <h3>Certifications</h3>
+            <p>Our products carry GOTS, FSC, Cradle to Cradle, and USDA Organic certifications. We verify every supplier personally.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- PRODUCT MODAL -->
+  <div class="modal-overlay" id="modalOverlay" onclick="closeModal()">
+    <div class="modal" id="productModal" onclick="event.stopPropagation()">
+      <button class="modal-close" onclick="closeModal()">✕</button>
+      <div id="modalContent"><!-- Populated by JS --></div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATIONS -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="logo"><span class="logo-leaf">🌿</span> <span class="logo-text">EcoHabit</span></div>
+          <p>Sustainable home goods for a greener tomorrow. Every small choice matters.</p>
+          <div class="footer-socials">
+            <a href="#">🌐</a><a href="#">📸</a><a href="#">🐦</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Shop</h4>
+          <ul>
+            <li><a href="#" onclick="showCategoryInShop('bamboo-cleaning')">Bamboo Cleaning</a></li>
+            <li><a href="#" onclick="showCategoryInShop('biodegradable-kitchenware')">Kitchenware</a></li>
+            <li><a href="#" onclick="showCategoryInShop('reusable-storage')">Reusable Storage</a></li>
+            <li><a href="#" onclick="showCategoryInShop('eco-cleaning-agents')">Cleaning Agents</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="#" onclick="showPage('about')">About Us</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Press</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Support</h4>
+          <ul>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Returns</a></li>
+            <li><a href="#">Shipping</a></li>
+            <li><a href="#">Contact Us</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 EcoHabit. All rights reserved. Made with 💚 for the planet.</p>
+        <p>🌱 Carbon-neutral shipping · ♻️ Plastic-free packaging · 🌳 1 tree per order</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
