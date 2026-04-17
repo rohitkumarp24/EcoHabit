@@ -1,5 +1,5 @@
 // ===== CONFIG =====
-const API = 'http://localhost:3000/api';
+const API = 'https://ecohabit-backend-eo2q.onrender.com/api';
 let SESSION_ID = localStorage.getItem('eco_session') || (() => {
   const id = 'sess_' + Math.random().toString(36).slice(2, 11);
   localStorage.setItem('eco_session', id);
